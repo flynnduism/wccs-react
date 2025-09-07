@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:wildcatcanyon.org)",
+      "Bash(npm run dev:*)",
+      "Bash(npm install)",
+      "Bash(for file in curriculum application-form purpose-and-path visit inquiry-form)",
+      "Bash(do head -15 \"app/$file/page.tsx\")",
+      "Bash(done)",
+      "Read(//Users/ronan/localhost/wildcatcanyon.org/Screenshots/**)",
+      "Bash(git checkout:*)",
+      "Read(//Users/ronan/localhost/wildcatcanyon.org/wccs-backup-2025/**)",
+      "WebFetch(domain:www.figma.com)",
+      "Read(//Users/ronan/.claude/**)",
+      "Bash(claude mcp add:*)",
+      "Bash(claude mcp:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

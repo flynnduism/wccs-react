@@ -10,7 +10,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.647 0.129 85.4); /* Amber-600 for school branding */
+  --primary: oklch(0.425 0.065 200); /* Teal-700 for school branding matching WordPress #27646c */
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -123,4 +123,76 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Sticky Navigation Styles */
+.sticky-wrapper {
+  transition: all 0.3s ease;
+}
+
+.nav-row {
+  transition: all 0.3s ease;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.nav-row.is-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 68px;
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dropdown Navigation Styles */
+.dropdown-menu {
+  position: relative;
+}
+
+.dropdown-menu > div {
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ensure dropdowns appear above sticky navigation */
+.nav-row.is-sticky .dropdown-menu > div {
+  z-index: 60;
+}
+
+/* Mobile responsiveness for dropdowns */
+@media (max-width: 768px) {
+  .dropdown-menu > div {
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Donation Button Animations */
+.donation-button {
+  animation: gentle-pulse 3s infinite;
+}
+
+@keyframes gentle-pulse {
+  0%, 100% { 
+    transform: scale(1);
+  }
+  50% { 
+    transform: scale(1.05);
+  }
+}
+
+.donation-button:hover {
+  animation: none;
 }

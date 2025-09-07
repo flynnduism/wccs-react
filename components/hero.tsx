@@ -26,7 +26,7 @@ export function Hero() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/inquiry-form">
-            <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 shadow-lg">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-3 shadow-lg">
               Inquire Now
             </Button>
           </Link>
@@ -34,7 +34,7 @@ export function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-amber-800 px-8 py-3 bg-white/10 backdrop-blur-sm shadow-lg"
+              className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-3 bg-white/10 backdrop-blur-sm shadow-lg"
             >
               Schedule a Visit
             </Button>

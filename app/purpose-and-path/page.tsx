@@ -1,4 +1,3 @@
-import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -6,9 +5,8 @@ import Link from "next/link"
 export default function PurposeAndPathPage() {
   return (
     <div className="min-h-screen bg-stone-50">
-      <Navigation />
 
-      <main className="pt-20">
+      <main>
         {/* Hero Section */}
         <section className="bg-gradient-to-b from-sky-50 to-stone-100 py-16">
           <div className="max-w-4xl mx-auto px-6 text-center">

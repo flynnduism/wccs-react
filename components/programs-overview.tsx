@@ -6,45 +6,49 @@ export function ProgramsOverview() {
     {
       title: "Early Childhood",
       subtitle: "Fostering the wonder in early childhood",
-      description: "Where learning is driven and joyful",
-      color: "bg-sky-100/80",
+      description: "Where learning begins with play, rhythm, and meaningful connection",
+      color: "bg-teal-50/80",
+      href: "/early-childhood",
     },
     {
       title: "Lower School: Grades 1-5",
       subtitle: "Where learning is driven and joyful",
-      description: "Bringing thinking, feeling & intuition to a new level",
-      color: "bg-sky-100/80",
+      description: "Building foundational skills through imagination and discovery",
+      color: "bg-teal-50/80",
+      href: "/lower-school",
     },
     {
       title: "Middle School: Grades 6-8",
       subtitle: "Bringing thinking, feeling & intuition to a new level",
-      description: "Where learning is driven and joyful",
-      color: "bg-sky-100/80",
+      description: "Preparing students for high school with confidence and purpose",
+      color: "bg-teal-50/80",
+      href: "/middle-school",
     },
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-b from-sky-100/50 to-sky-200/30">
+    <section className="py-20 bg-gradient-to-b from-teal-50/30 to-teal-100/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8">
           {programs.map((program, index) => (
-            <Card
-              key={index}
-              className={`${program.color} border-0 text-center p-8 shadow-sm hover:shadow-md transition-shadow`}
-            >
-              <CardContent className="p-0">
-                <h3 className="text-lg font-semibold text-slate-800 mb-3">{program.title}</h3>
-                <p className="text-slate-700 text-sm mb-2 font-medium">{program.subtitle}</p>
-                <p className="text-slate-600 text-sm leading-relaxed">{program.description}</p>
-              </CardContent>
-            </Card>
+            <Link key={index} href={program.href}>
+              <Card
+                className={`${program.color} border-teal-200 text-center p-8 shadow-sm hover:shadow-lg transition-all cursor-pointer hover:scale-105`}
+              >
+                <CardContent className="p-0">
+                  <h3 className="text-xl font-semibold text-primary mb-3">{program.title}</h3>
+                  <p className="text-teal-700 text-sm mb-2 font-medium">{program.subtitle}</p>
+                  <p className="text-teal-600 text-sm leading-relaxed">{program.description}</p>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
 
         <div className="text-center mt-16">
           <Link
             href="/visit"
-            className="inline-flex items-center text-slate-700 hover:text-slate-900 font-medium text-lg group"
+            className="inline-flex items-center text-primary hover:text-teal-800 font-medium text-lg group"
           >
             Visit Our Campus
             <svg

@@ -1,4 +1,3 @@
-import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -9,9 +8,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 export default function InquiryFormPage() {
   return (
     <div className="min-h-screen bg-stone-50">
-      <Navigation />
 
-      <main className="pt-20">
+      <main>
         {/* Hero Section */}
         <section className="bg-gradient-to-b from-amber-50 to-stone-100 py-16">
           <div className="max-w-4xl mx-auto px-6 text-center">

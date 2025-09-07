@@ -1,4 +1,3 @@
-import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
@@ -6,13 +5,11 @@ import Image from "next/image"
 export default function SweetPeaPage() {
   return (
     <div className="min-h-screen bg-stone-50">
-      <Navigation />
-
-      <main className="pt-20">
+      <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-amber-50 to-stone-100 py-16">
+        <section className="bg-gradient-to-b from-teal-50 to-stone-100 py-16">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-amber-900 mb-6">Sweet Pea Parent Child</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">Sweet Pea Parent Child</h1>
             <p className="text-xl text-stone-700 mb-8 max-w-3xl mx-auto leading-relaxed">
               The first three years of a child's life are a precious time of unfolding development and bonding.
             </p>
@@ -58,7 +55,7 @@ export default function SweetPeaPage() {
         {/* Toddler Program */}
         <section id="toddler" className="py-16 bg-white">
           <div className="max-w-4xl mx-auto px-6">
-            <h2 className="text-3xl font-bold text-amber-900 mb-8 text-center">Parent/Caregiver-Child Class</h2>
+            <h2 className="text-3xl font-bold text-primary mb-8 text-center">Parent/Caregiver-Child Class</h2>
             <div className="grid md:grid-cols-2 gap-12 items-start">
               <div>
                 <p className="text-stone-700 leading-relaxed mb-6">
@@ -69,37 +66,37 @@ export default function SweetPeaPage() {
 
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
-                    <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
                     <div>
-                      <strong className="text-amber-900">Guided Observations:</strong> With the help of the teacher, you
+                      <strong className="text-primary">Guided Observations:</strong> With the help of the teacher, you
                       will polish your skills to observe your child.
                     </div>
                   </li>
                   <li className="flex items-start">
-                    <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
                     <div>
-                      <strong className="text-amber-900">Engaging Activities:</strong> Age appropriate movement and
+                      <strong className="text-primary">Engaging Activities:</strong> Age appropriate movement and
                       songs inspired by Waldorf principles.
                     </div>
                   </li>
                   <li className="flex items-start">
-                    <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
                     <div>
-                      <strong className="text-amber-900">Connection to Nature:</strong> Outdoor play and exploration in
+                      <strong className="text-primary">Connection to Nature:</strong> Outdoor play and exploration in
                       our yard and beautiful canyon surroundings.
                     </div>
                   </li>
                   <li className="flex items-start">
-                    <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
                     <div>
-                      <strong className="text-amber-900">Community:</strong> Meet other families and build a supportive
+                      <strong className="text-primary">Community:</strong> Meet other families and build a supportive
                       community.
                     </div>
                   </li>
                 </ul>
 
-                <div className="bg-amber-50 p-6 rounded-lg mb-6">
-                  <h3 className="font-semibold text-amber-900 mb-2">Spring Program</h3>
+                <div className="bg-teal-50 p-6 rounded-lg mb-6">
+                  <h3 className="font-semibold text-primary mb-2">Spring Program</h3>
                   <p className="text-stone-700 mb-2">Thursdays – April 17, 24, and May 1, 8, 15, 22, and 29</p>
                   <p className="text-stone-700 mb-2">8:45 am – 10:45 am in our Strawbale Classroom, Upper Field</p>
                   <p className="text-stone-700">
@@ -123,7 +120,7 @@ export default function SweetPeaPage() {
         {/* Infant Program */}
         <section id="infant" className="py-16 bg-stone-50">
           <div className="max-w-4xl mx-auto px-6">
-            <h2 className="text-3xl font-bold text-amber-900 mb-8 text-center">Cradle Connections</h2>
+            <h2 className="text-3xl font-bold text-primary mb-8 text-center">Cradle Connections</h2>
             <div className="grid md:grid-cols-2 gap-12 items-start">
               <div>
                 <p className="text-stone-700 leading-relaxed mb-6">
@@ -133,8 +130,8 @@ export default function SweetPeaPage() {
                   sanctuary for families to celebrate the beauty of early parenthood.
                 </p>
 
-                <div className="bg-sky-50 p-6 rounded-lg mb-6">
-                  <h3 className="font-semibold text-sky-900 mb-2">Spring Program</h3>
+                <div className="bg-teal-50 p-6 rounded-lg mb-6">
+                  <h3 className="font-semibold text-primary mb-2">Spring Program</h3>
                   <p className="text-stone-700 mb-2">Thursdays – April 17, 24, and May 1, 8, 15, 22, and 29</p>
                   <p className="text-stone-700 mb-2">11:15 am – 12:45 pm in our Strawbale Classroom, Upper Field</p>
                   <p className="text-stone-700">
@@ -156,7 +153,7 @@ export default function SweetPeaPage() {
           <div className="max-w-4xl mx-auto px-6">
             <div className="grid md:grid-cols-3 gap-8 items-center">
               <div className="md:col-span-2">
-                <h3 className="text-2xl font-bold text-amber-900 mb-4">Teacher Shabana Shahbaz</h3>
+                <h3 className="text-2xl font-bold text-primary mb-4">Teacher Shabana Shahbaz</h3>
                 <p className="text-stone-700 leading-relaxed mb-4">
                   Shabana is our beloved aftercare program's lead teacher and has been part of our school's community
                   since 2008 as a parent, volunteer, faculty member and resident Chai maker! She grew up in Pakistan and
@@ -178,16 +175,16 @@ export default function SweetPeaPage() {
         </section>
 
         {/* Contact & CTA */}
-        <section className="py-16 bg-amber-50">
+        <section className="py-16 bg-teal-50">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <p className="text-stone-700 mb-6">
               For additional information, please contact us at{" "}
-              <a href="mailto:info@wildcatcanyon.org" className="text-amber-700 hover:text-amber-800">
+              <a href="mailto:info@wildcatcanyon.org" className="text-primary hover:text-teal-800">
                 info@wildcatcanyon.org
               </a>
             </p>
             <Link href="/inquiry-form">
-              <Button className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 text-lg">Inquire Now</Button>
+              <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 text-lg">Inquire Now</Button>
             </Link>
           </div>
         </section>

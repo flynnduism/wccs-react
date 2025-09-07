@@ -1,0 +1,20 @@
+import { Hero } from "@/components/hero"
+
+export default function MethodsPage() {
+  return (
+    <>
+      <Hero 
+        title="Our Curriculum and Methods"
+        subtitle="Exploring our teaching methodologies and curriculum design"
+        backgroundImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hero-bg-YXSdK39jVMJKNYlRpT8yYQtGvJjW.jpg"
+      />
+      
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto prose prose-lg">
+          <h2>Our Curriculum and Methods</h2>
+          <p>Content coming soon...</p>
+        </div>
+      </div>
+    </>
+  )
+}

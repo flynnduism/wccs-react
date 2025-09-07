@@ -2,296 +2,188 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
-const ChevronDownIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-  </svg>
-)
+// Navigation menu structure
+const navigationMenu = [
+  {
+    title: "About WCCS",
+    href: "/about",
+    children: [
+      { title: "At A Glance", href: "/about/at-a-glance" },
+      { title: "Contact Us", href: "/contact" },
+      { title: "Faculty & Staff", href: "/faculty" },
+      { title: "Governance", href: "/about/governance" },
+      { title: "Employment", href: "/about/employment" },
+      { title: "Diversity", href: "/about/diversity" },
+    ]
+  },
+  {
+    title: "Curriculum",
+    href: "/curriculum",
+    children: [
+      { title: "The Value of Our Education", href: "/curriculum/value-of-education" },
+      { title: "Our Curriculum and Methods", href: "/curriculum/methods" },
+      { title: "Early Childhood", href: "/early-childhood" },
+      { title: "Lower School", href: "/lower-school" },
+      { title: "Middle School", href: "/middle-school" },
+      { title: "Special Subjects", href: "/curriculum/special-subjects" },
+      { title: "Outside the Classroom", href: "/curriculum/outside-classroom" },
+    ]
+  },
+  {
+    title: "Programs",
+    href: "/programs",
+    children: [
+      { title: "Break Camps", href: "/programs/break-camps" },
+      { title: "After Care", href: "/programs/after-care" },
+      { title: "Willow Homeschooling Program", href: "/programs/willow-homeschooling" },
+      { title: "Sweet Pea Parent Child", href: "/sweet-pea" },
+    ]
+  },
+  {
+    title: "Admissions",
+    href: "/admissions",
+    children: [
+      { title: "Welcome", href: "/admissions/welcome" },
+      { title: "Inquire", href: "/inquiry-form" },
+      { title: "Applying", href: "/application-form" },
+      { title: "Affording", href: "/admissions/affording" },
+      { title: "Visiting", href: "/visit" },
+    ]
+  },
+  {
+    title: "Community",
+    href: "/community",
+    children: [
+      { title: "Calendar", href: "/community/calendar" },
+      { title: "Community Workdays", href: "/community/workdays" },
+      { title: "Festivals", href: "/community/festivals" },
+      { title: "Community Life Circle", href: "/community/life-circle" },
+      { title: "Parent Resources", href: "/community/parent-resources" },
+      { title: "Covid Policy", href: "/community/covid-policy" },
+    ]
+  },
+  {
+    title: "Giving",
+    href: "/giving",
+    children: [
+      { title: "Abundant Table Fund", href: "/giving/abundant-table-fund" },
+    ]
+  },
+  {
+    title: "Blog",
+    href: "/blog",
+    children: []
+  }
+]
 
 export function Navigation() {
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const stickyWrapperRef = useRef<HTMLDivElement>(null)
+  const navRowRef = useRef<HTMLDivElement>(null)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
-  const handleMouseEnter = (menu: string) => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-      timeoutRef.current = null
+  useEffect(() => {
+    const handleScroll = () => {
+      if (stickyWrapperRef.current && navRowRef.current) {
+        if (window.scrollY > 0) {
+          stickyWrapperRef.current.classList.add('is-sticky')
+          navRowRef.current.classList.add('is-sticky')
+        } else {
+          stickyWrapperRef.current.classList.remove('is-sticky')
+          navRowRef.current.classList.remove('is-sticky')
+        }
+      }
     }
-    setActiveDropdown(menu)
-  }
 
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setActiveDropdown(null)
-    }, 150) // Small delay to allow moving to dropdown
-  }
-
-  const handleDropdownMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-      timeoutRef.current = null
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element
+      if (!target.closest('.dropdown-menu')) {
+        setOpenDropdown(null)
+      }
     }
-  }
 
-  const handleDropdownMouseLeave = () => {
-    setActiveDropdown(null)
-  }
+    window.addEventListener('scroll', handleScroll)
+    document.addEventListener('click', handleClickOutside)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [])
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div 
+      ref={stickyWrapperRef}
+      className="sticky-wrapper bg-white border-b border-gray-200 font-[var(--font-lato)]"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <Link href="/" className="flex items-center">
+        <div className="flex flex-col items-center py-6">
+          {/* Logo - Centered */}
+          <Link href="/" className="flex items-center" style={{ marginBottom: '1.5rem' }}>
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wccs-logo-strapline-sm-3YErnLb2ESz5N8dXwwQCpZxFgxycPm.png"
               alt="Wildcat Canyon Community School"
               width={280}
               height={60}
-              className="h-12 w-auto"
+              className="w-auto"
+              style={{ height: '6.25rem' }}
             />
           </Link>
 
-          <div className="hidden md:flex space-x-8 text-sm font-medium">
-            <div className="relative" onMouseEnter={() => handleMouseEnter("about")} onMouseLeave={handleMouseLeave}>
-              <button className="flex items-center text-gray-700 hover:text-gray-900 uppercase tracking-wide">
-                About WCCS
-                <ChevronDownIcon className="ml-1 h-4 w-4" />
-              </button>
-              {activeDropdown === "about" && (
-                <div
-                  className="absolute top-full left-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50"
-                  onMouseEnter={handleDropdownMouseEnter}
-                  onMouseLeave={handleDropdownMouseLeave}
-                >
-                  <Link
-                    href="/about"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+          {/* Navigation Menu - Centered Below Logo */}
+          <div 
+            ref={navRowRef}
+            className="nav-row flex flex-wrap justify-center bg-white z-50"
+          >
+            {navigationMenu.map((item) => (
+              <div key={item.title} className="dropdown-menu relative">
+                {item.children.length > 0 ? (
+                  <>
+                    <button
+                      onClick={() => setOpenDropdown(openDropdown === item.title ? null : item.title)}
+                      className="text-[#36281c] hover:text-[#27646c] uppercase transition-colors flex items-center"
+                      style={{ fontSize: '16px', letterSpacing: '1px', fontWeight: '400', padding: '0 15px' }}
+                    >
+                      {item.title}
+                      <svg 
+                        className={`ml-1 h-4 w-4 transition-transform ${openDropdown === item.title ? 'rotate-180' : ''}`}
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    
+                    {openDropdown === item.title && (
+                      <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={() => setOpenDropdown(null)}
+                            className="block px-4 py-3 text-sm text-[#36281c] hover:text-[#27646c] hover:bg-gray-50 transition-colors"
+                          >
+                            {child.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link 
+                    href={item.href}
+                    className="text-[#36281c] hover:text-[#27646c] uppercase transition-colors"
+                    style={{ fontSize: '16px', letterSpacing: '1px', fontWeight: '400', padding: '0 15px' }}
                   >
-                    About Our School
+                    {item.title}
                   </Link>
-                  <Link
-                    href="/faculty"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Faculty & Staff
-                  </Link>
-                  <Link
-                    href="/philosophy"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Waldorf Philosophy
-                  </Link>
-                  <Link
-                    href="/campus"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Our Campus
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <div
-              className="relative"
-              onMouseEnter={() => handleMouseEnter("curriculum")}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button className="flex items-center text-gray-700 hover:text-gray-900 uppercase tracking-wide">
-                Curriculum
-                <ChevronDownIcon className="ml-1 h-4 w-4" />
-              </button>
-              {activeDropdown === "curriculum" && (
-                <div
-                  className="absolute top-full left-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50"
-                  onMouseEnter={handleDropdownMouseEnter}
-                  onMouseLeave={handleDropdownMouseLeave}
-                >
-                  <Link
-                    href="/curriculum"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Overview
-                  </Link>
-                  <Link
-                    href="/curriculum/early-childhood"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Early Childhood
-                  </Link>
-                  <Link
-                    href="/curriculum/lower-school"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Lower School
-                  </Link>
-                  <Link
-                    href="/curriculum/middle-school"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Middle School
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <div className="relative" onMouseEnter={() => handleMouseEnter("programs")} onMouseLeave={handleMouseLeave}>
-              <button className="flex items-center text-gray-700 hover:text-gray-900 uppercase tracking-wide">
-                Programs
-                <ChevronDownIcon className="ml-1 h-4 w-4" />
-              </button>
-              {activeDropdown === "programs" && (
-                <div
-                  className="absolute top-full left-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50"
-                  onMouseEnter={handleDropdownMouseEnter}
-                  onMouseLeave={handleDropdownMouseLeave}
-                >
-                  <Link
-                    href="/programs"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    All Programs
-                  </Link>
-                  <Link
-                    href="/sweet-pea"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Sweet Pea Parent-Child
-                  </Link>
-                  <Link
-                    href="/early-childhood"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Early Childhood
-                  </Link>
-                  <Link
-                    href="/lower-school"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Lower School
-                  </Link>
-                  <Link
-                    href="/middle-school"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Middle School
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <div
-              className="relative"
-              onMouseEnter={() => handleMouseEnter("admissions")}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button className="flex items-center text-gray-700 hover:text-gray-900 uppercase tracking-wide">
-                Admissions
-                <ChevronDownIcon className="ml-1 h-4 w-4" />
-              </button>
-              {activeDropdown === "admissions" && (
-                <div
-                  className="absolute top-full left-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50"
-                  onMouseEnter={handleDropdownMouseEnter}
-                  onMouseLeave={handleDropdownMouseLeave}
-                >
-                  <Link
-                    href="/admissions"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Admissions Overview
-                  </Link>
-                  <Link
-                    href="/visit"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Visit Our Campus
-                  </Link>
-                  <Link
-                    href="/inquiry-form"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Inquiry Form
-                  </Link>
-                  <Link
-                    href="/application-form"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Application Form
-                  </Link>
-                  <Link
-                    href="/tuition"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Tuition & Fees
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <div
-              className="relative"
-              onMouseEnter={() => handleMouseEnter("community")}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button className="flex items-center text-gray-700 hover:text-gray-900 uppercase tracking-wide">
-                Community
-                <ChevronDownIcon className="ml-1 h-4 w-4" />
-              </button>
-              {activeDropdown === "community" && (
-                <div
-                  className="absolute top-full left-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50"
-                  onMouseEnter={handleDropdownMouseEnter}
-                  onMouseLeave={handleDropdownMouseLeave}
-                >
-                  <Link
-                    href="/community"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Community Overview
-                  </Link>
-                  <Link
-                    href="/events"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Events & Calendar
-                  </Link>
-                  <Link
-                    href="/newsletter"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Newsletter
-                  </Link>
-                  <Link
-                    href="/parent-resources"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    Parent Resources
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <Link href="/giving" className="text-gray-700 hover:text-gray-900 uppercase tracking-wide">
-              Giving
-            </Link>
-            <Link href="/blog" className="text-gray-700 hover:text-gray-900 uppercase tracking-wide">
-              Blog
-            </Link>
-            <button className="text-gray-700 hover:text-gray-900">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </button>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </nav>
+    </div>
   )
 }

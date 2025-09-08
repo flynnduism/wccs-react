@@ -11,7 +11,8 @@
   - [ ] Organize program pages under `/programs/` hierarchy
 
 ### 📝 Content Migration & Population
-- [ ] **Populate all sub-pages with actual content** (currently all have "Content coming soon...")
+- [ ] **Populate all sub-pages with EXACT REPLICA content from live site** (currently all have "Content coming soon...")
+  - **CRITICAL:** Extract word-for-word content from wildcatcanyon.org - NO rewriting or optimization
   - [ ] `/about/at-a-glance` - School overview and key facts
   - [ ] `/about/governance` - Board structure and leadership
   - [ ] `/about/employment` - Job opportunities and hiring process

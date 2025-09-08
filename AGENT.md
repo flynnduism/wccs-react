@@ -4,6 +4,12 @@
 
 **Objective:** Migrate WordPress site (https://wildcatcanyon.org/) to a simple JAMstack-style static website while preserving page design and layout.
 
+**CRITICAL REQUIREMENT: EXACT CONTENT REPLICATION**
+- All page content must be word-for-word replicas of the live site
+- No optimization, rewriting, or improvement of existing content
+- Maintain exact text, headings, formatting, and structure from wildcatcanyon.org
+- Any content extraction must preserve original wording completely
+
 **Client Requirements:**
 - Preserve design and layout as closely as possible
 - Simple content management for non-technical users
